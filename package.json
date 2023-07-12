@@ -1,0 +1,21 @@
+{
+  "name": "pcsd-bot",
+  "version": "1.0.0",
+  "description": "Pine County Sheriff's Departement official Bot",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "roty2Poulet",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^1.4.0",
+    "@discordjs/opus": "^0.8.0",
+    "@discordjs/voice": "^0.14.0",
+    "discord.js": "^14.7.1",
+    "dotenv": "^16.0.3",
+    "libsodium-wrappers": "^0.7.10",
+    "node-fetch": "^2.6.6",
+    "node-json-db": "^2.1.3"
+  }
+}

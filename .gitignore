@@ -1,0 +1,7 @@
+# Ignoren node_modules
+node_modules
+
+# Ignore the unuseful files
+package-lock.json
+db.json
+.env

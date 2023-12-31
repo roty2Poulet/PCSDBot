@@ -1,13 +1,28 @@
 const { EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder } = require("discord.js");
 
-module.exports.execute = async (guild, effChannel) => {
+module.exports.name = "effectifs";
+
+module.exports.builder = new SlashCommandBuilder()
+    .setName(module.exports.name)
+    .setDescription("Actualise la liste des effectifs dans le channel Effectifs")
+;
+
+module.exports.execute = async (interaction) => {
+
+    interaction.deferReply({ephemeral: true});
+
+    const guild = interaction.guild;
+
+    const effChannel = guild.channels.cache.get("1120626487528271884");
+
+    if (effChannel.messageCount === 0) {
+        interaction.reply({content: "❌ Pas de messages dans <#1120626487528271884>", ephemeral: true})
+    }
 
     await effChannel.messages.fetch();
 
-    const msgToDelete = await effChannel.messages.cache.find(m => m.author.bot);
-    if (msgToDelete != undefined) { 
-        msgToDelete.delete(); 
-    }
+    effChannel.messages.cache.each(msg => msg.delete().catch(console.error));
 
     await guild.roles.fetch();
 
@@ -72,7 +87,9 @@ module.exports.execute = async (guild, effChannel) => {
             .setColor("0x056500")
             .setTitle("Effectifs")
             .setDescription(embedContent)
-            .setFooter({ text: "Pine County Sheriff's Department", iconURL: "https://i.imgur.com/gxWkNhH.png" })
+            .setFooter({ text: "Pine County Sheriff's Department", iconURL: "https://i.imgur.com/1xPstwX.png" })
     ]});
+
+    await interaction.editReply({ content: "✅ Channel <#1120626487528271884> actualisé avec succès", ephemeral: true });
 
 };

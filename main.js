@@ -30,7 +30,7 @@ const db = new JsonDB(new Config("db", true, true, '/'));
 // #---------Custom Imports---------#
 const createPrivateVC = require("./commands/misc/privateVocals/createPrivateVC.js");
 const deletePrivateVC = require("./commands/misc/privateVocals/deletePrivateVC.js");
-const PCSDListActualize = require("./commands/misc/guildMemberUpdate/PCSDList.js");
+const effectifsCmd = require("./commands/misc/effectifs/effectifsCmd.js");
 const serviceCmd = require("./commands/misc/service/service.js");
 const linkSteamCmd = require("./commands/misc/service/linkSteam.js");
 const sendTable = require("./commands/misc/service/sendTable.js");
@@ -44,6 +44,7 @@ client.once("ready", async () => {
     const PCSDGuild = client.guilds.cache.get("1056917546659483728");
 
     // Création commande: await PCSDGuild.commands.create();
+    await PCSDGuild.commands.create(effectifsCmd.builder);
     
     // Récupération des commandes serveur
     await PCSDGuild.commands.fetch();
@@ -56,7 +57,7 @@ client.once("ready", async () => {
 });
 
 
-// When someone joins a channel
+// VOC TEMPORAIRE
 client.on("voiceStateUpdate", async (oldState, newState) => {
 
     if (!oldState.channel && !newState.channel) { return }
@@ -98,20 +99,7 @@ client.on("voiceStateUpdate", async (oldState, newState) => {
 });
 
 
-client.on("guildMemberUpdate", (oldMember, newMember) => {
-
-    if (oldMember.roles.cache.equals(newMember.roles.cache)) { return } // Si ses roles n'ont pas changé --> return
-
-    if (!oldMember.roles.cache.has("1064185602620280912") && !newMember.roles.cache.has("1064185602620280912")) { return } // S'il n'a pas le role PCSD --> return
-
-    const guild = newMember.guild;
-
-    const effChannel = guild.channels.cache.get("1120626487528271884");
-
-    PCSDListActualize.execute(guild, effChannel);
-});
-
-
+// COMMANDES PCSD
 client.on("interactionCreate", (interaction) => {
     if (!interaction.isCommand) return
 
@@ -121,6 +109,8 @@ client.on("interactionCreate", (interaction) => {
         linkSteamCmd.execute(interaction, db);
     } else if (interaction.commandName === unlinkSteamCmd.name) {
         unlinkSteamCmd.execute(interaction, db);
+    } else if (interaction.commandName === effectifsCmd.name) {
+        effectifsCmd.execute(interaction);
     }
 
 });

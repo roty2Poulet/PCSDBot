@@ -54,7 +54,7 @@ module.exports.execute = (PCSDGuild, db) => {
 
             const mondayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6);
 
-            await PCSDGuild.channels.cache.get("1095974574887288982").send({ embeds: [
+            await PCSDGuild.channels.cache.get("1196053050322857984").send({ embeds: [
                 new EmbedBuilder()
                     .setTitle(`Rapport de service de la semaine du ${mondayDate.getDate()}/${mondayDate.getMonth() + 1}/${mondayDate.getFullYear()}`)
                     .setColor("0x056500")

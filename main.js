@@ -44,7 +44,6 @@ client.once("ready", async () => {
     const PCSDGuild = client.guilds.cache.get("1056917546659483728");
 
     // Création commande: await PCSDGuild.commands.create();
-    await PCSDGuild.commands.create(effectifsCmd.builder);
     
     // Récupération des commandes serveur
     await PCSDGuild.commands.fetch();

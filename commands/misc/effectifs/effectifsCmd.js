@@ -14,15 +14,12 @@ module.exports.execute = async (interaction) => {
 
     const guild = interaction.guild;
 
-    const effChannel = guild.channels.cache.get("1120626487528271884");
+    const effChannel = guild.channels.cache.get("1196053050322857984");
 
-    if (effChannel.messageCount === 0) {
-        interaction.reply({content: "❌ Pas de messages dans <#1120626487528271884>", ephemeral: true})
+    if (effChannel.messageCount !== 0) {
+        await effChannel.messages.fetch();
+        effChannel.messages.cache.each(msg => msg.delete().catch(console.error));
     }
-
-    await effChannel.messages.fetch();
-
-    effChannel.messages.cache.each(msg => msg.delete().catch(console.error));
 
     await guild.roles.fetch();
 
@@ -90,6 +87,6 @@ module.exports.execute = async (interaction) => {
             .setFooter({ text: "Pine County Sheriff's Office", iconURL: "https://i.imgur.com/YZZbcy3.png" })
     ]});
 
-    await interaction.editReply({ content: "✅ Channel <#1120626487528271884> actualisé avec succès", ephemeral: true });
+    await interaction.editReply({ content: "✅ Channel <#1196053050322857984> actualisé avec succès", ephemeral: true });
 
 };

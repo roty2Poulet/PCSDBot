@@ -59,7 +59,7 @@ module.exports.execute = (PCSDGuild, db) => {
                     .setTitle(`Rapport de service de la semaine du ${mondayDate.getDate()}/${mondayDate.getMonth() + 1}/${mondayDate.getFullYear()}`)
                     .setColor("0x056500")
                     .setDescription(embedContent)
-                    .setFooter({ text: "Pine County Sheriff's Department", iconURL: "https://i.imgur.com/gxWkNhH.png"})
+                    .setFooter({ text: "Pine County Sheriff's Office", iconURL: "https://i.imgur.com/YZZbcy3.png"})
             ]});
 
         }, (midnightInSeconds - secondsNow) * 1000);

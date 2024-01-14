@@ -87,7 +87,7 @@ module.exports.execute = async (interaction) => {
             .setColor("0x056500")
             .setTitle("Effectifs")
             .setDescription(embedContent)
-            .setFooter({ text: "Pine County Sheriff's Department", iconURL: "https://i.imgur.com/1xPstwX.png" })
+            .setFooter({ text: "Pine County Sheriff's Office", iconURL: "https://i.imgur.com/YZZbcy3.png" })
     ]});
 
     await interaction.editReply({ content: "✅ Channel <#1120626487528271884> actualisé avec succès", ephemeral: true });

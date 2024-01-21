@@ -35,6 +35,7 @@ const serviceCmd = require("./commands/misc/service/service.js");
 const linkSteamCmd = require("./commands/misc/service/linkSteam.js");
 const sendTable = require("./commands/misc/service/sendTable.js");
 const unlinkSteamCmd = require("./commands/misc/service/unlinkSteam.js");
+const investigationCmd = require("./commands/misc/investigation/investigationCmd.js");
 // ----------Custom Imports----------
 
 
@@ -98,7 +99,7 @@ client.on("voiceStateUpdate", async (oldState, newState) => {
 });
 
 
-// COMMANDES PCSD
+// COMMANDES PCSO
 client.on("interactionCreate", (interaction) => {
     if (!interaction.isCommand) return
 
@@ -110,6 +111,8 @@ client.on("interactionCreate", (interaction) => {
         unlinkSteamCmd.execute(interaction, db);
     } else if (interaction.commandName === effectifsCmd.name) {
         effectifsCmd.execute(interaction);
+    } else if (interaction.commandName === investigationCmd.name) {
+        investigationCmd.execute(interaction, db);
     }
 
 });

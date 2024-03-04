@@ -38,7 +38,7 @@ module.exports.execute = async (interaction, db) => {
         const gameID = data.response.players[0].gameid ?? null;
         const gameServerIP = data.response.players[0].gameserverip ?? null;
         const gmodID = "4000";
-        const monolithIP = "208.103.169.233:27015";
+        const monolithIP = "194.69.160.62:27015";
         
         if (gameID == gmodID && gameServerIP == monolithIP) {
             isConnected = true;
